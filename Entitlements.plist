@@ -3,14 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>application-identifier</key>
-	<string>T42HZ6WKUR.com.yiss.fkdapp</string>
+	<string>xxxxxxxx.com.xxxx.xxxxx</string>
 	<key>aps-environment</key>
 	<string>production</string>
 	<key>get-task-allow</key>
 	<false/>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>T42HZ6WKUR.com.yiss.fkdapp</string>
+		<string>xxxxxxxx.com.xxxx.xxxxx</string>
 	</array>
 </dict>
 </plist>

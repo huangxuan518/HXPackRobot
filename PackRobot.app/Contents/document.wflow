@@ -51,7 +51,18 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run {input, parameters}		(* Your script goes here *)	tell application "Terminal"		reopen		activate		try			do script "python ~/Desktop/PackRobot/ipa.py" in window 1		end try	end tell	end run</string>
+					<string>on run {input, parameters}
+	
+	(* Your script goes here *)
+	tell application "Terminal"
+		reopen
+		activate
+		try
+			do script "python ~/Desktop/PackRobot/pack.py" in window 1
+		end try
+	end tell
+	
+end run</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -68,15 +79,15 @@
 				<key>Class Name</key>
 				<string>RunScriptAction</string>
 				<key>InputUUID</key>
-				<string>9B6A5313-678C-49BE-B090-20E87CB25A3D</string>
+				<string>6FC94543-D2BB-4EDC-BCA7-3318827DC93F</string>
 				<key>Keywords</key>
 				<array>
 					<string>运行</string>
 				</array>
 				<key>OutputUUID</key>
-				<string>18614E6B-65FC-4DF2-BD26-684D25303616</string>
+				<string>A1773ACB-64E0-4F2D-ABAC-73878953EBEB</string>
 				<key>UUID</key>
-				<string>9BBC08D9-29B6-4793-B6A8-FD6629A52691</string>
+				<string>AFAD0BFF-58E5-4C34-9956-1C464F68D90B</string>
 				<key>UnlocalizedApplications</key>
 				<array>
 					<string>Automator</string>

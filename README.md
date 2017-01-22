@@ -23,7 +23,7 @@ Python 和 fir-cli
 
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/10.png)
 
-5.打开ipa.py文件，根据自己的实际情况更改红框部分
+5.打开pack.py文件，根据自己的实际情况更改红框部分
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/6.png)
 
 6.打开resign.sh文件，更改红框部分
@@ -34,7 +34,21 @@ Python 和 fir-cli
 
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/5.png)
 
-8.运行PackRobot.app则可以一键打包改签名并上传fir,给相关人员发送邮件
+8.运行PackRobot.app
+
+![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/13.png)
+
+9.生成签名好的ipa包
+
+![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/14.png)
+
+10.并上传fir
+
+![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/15.png)
+
+11.发送邮件
+
+![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/16.png)
 
 # 证书名称和用户ID如何获取
 
