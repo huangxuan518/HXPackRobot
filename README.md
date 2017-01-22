@@ -56,3 +56,25 @@ Python 和 fir-cli
 Python下载：https://www.python.org/downloads/
 
 fir-cli 安装使用:https://github.com/FIRHQ/fir-cli/blob/master/README.md 
+
+# 参考文章:
+
+http://blog.csdn.net/qq_19979539/article/details/50998275
+
+http://zackzheng.info/2015/12/27/2015-12-27-an-automated-script-for-building-archiving-submission-sending-emails/
+
+http://blog.csdn.net/potato512/article/details/52172107
+
+http://doc.okbase.net/boch2436/archive/120790.html
+
+https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/xcodebuild.1.html
+
+http://www.jianshu.com/p/ea5fa39b8950
+
+http://stonedu.site/2016/08/17/iOS-%E6%9C%AC%E5%9C%B0%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7/
+
+http://www.jianshu.com/p/15edfe11f8ac
+
+http://www.cnblogs.com/slc-lover/p/5921129.html
+
+http://m.blog.csdn.net/article/details?id=52694817
