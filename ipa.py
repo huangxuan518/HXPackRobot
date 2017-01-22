@@ -11,22 +11,21 @@ import smtplib
 
 #需要配置分割线 ===================================================================
 # 项目配置
-app_name = "福快递" #App名
-project_name = "FuKuaiDi" #工程名
-scheme = "FuKuaiDi" #scheme
-project_path = "/Users/Love/Desktop/iOS-FuKuaiDi" # 项目根目录
+app_name = "" #App名
+project_name = "" #工程名
+scheme = "" #scheme
+project_path = "" # 项目根目录
 targerIPA_parth = "/Users/Love/Desktop/PackRobot/" # 打包后ipa存储目录 请指向自动打包脚本所在目录
 
 # fir
-fir_api_token = "70fe6e7977e4b41056da9a182795dd67" # firm的api token
-download_address = "https://fir.im/fukuaidient" #firm 下载地址
+fir_api_token = "" # firm的api token
+download_address = "" #firm 下载地址
 
 #邮件配置
-from_name = "黄轩"
-from_addr = "xuan.huang@ebizer.com"
-password = "*****"
+from_name = ""
+from_addr = ""
+password = ""
 smtp_server = "smtp.exmail.qq.com"
-#to_addr = ['770493410@qq.com','468402@qq.com','1361852914@qq.com','huangxuan27@126.com']
 to_addr = ['770493410@qq.com','huangxuan27@126.com']
 
 #需要配置分割线 ===================================================================
