@@ -11,22 +11,22 @@ import smtplib
 
 #需要配置分割线 ===================================================================
 # 项目配置
-app_name = "" #App名
-project_name = "" #工程名
-scheme = "" #scheme
-project_path = "" # 项目根目录
-targerIPA_parth = "~/Desktop/PackRobot/" # 打包后ipa存储目录 请指向自动打包脚本所在目录
+app_name = “app" #App名
+project_name = "project" #工程名
+scheme = "scheme" #scheme
+project_path = "~/Desktop/iOS-Project" # 项目根目录
+targerIPA_parth = "~/Desktop/PackRobot/" # 打包后ipa存储目录 请指向PackRobot所在目录
 
 # fir
-fir_api_token = "" # firm的api token
-download_address = "" #firm 下载地址
+fir_api_token = "1d93d24eee630b269e46a7c98df5655c" # firm的api token
+download_address = "https://fir.im/project" #firm 下载地址
 
 #邮件配置
-from_name = ""
-from_addr = ""
-password = ""
-smtp_server = "smtp.exmail.qq.com"
-to_addr = ['770493410@qq.com','huangxuan27@126.com']
+from_name = “发件人姓名”
+from_addr = "xxx@qq.com"
+password = “******”
+smtp_server = "smtp.exmail.qq.com" #不同邮箱服务器可百度
+to_addr = [‘xxxx@qq.com’,’xxxx@qq.com']
 
 #需要配置分割线 ===================================================================
 
