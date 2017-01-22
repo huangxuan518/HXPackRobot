@@ -51,6 +51,8 @@ Python 和 fir-cli
 
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/9.png)
 
-扩展:
+# 扩展
+
 Python下载：https://www.python.org/downloads/
+
 fir-cli 安装使用:https://github.com/FIRHQ/fir-cli/blob/master/README.md 
