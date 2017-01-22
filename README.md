@@ -50,6 +50,14 @@ Python 和 fir-cli
 
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/16.png)
 
+11.收到邮件
+
+![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/17.png)
+
+11.下载安装包
+
+![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/18.png)
+
 # 证书名称和用户ID如何获取
 
 1.打开钥匙串
