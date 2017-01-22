@@ -24,7 +24,7 @@ download_address = "https://fir.im/fukuaidient" #firm 下载地址
 #邮件配置
 from_name = "黄轩"
 from_addr = "xuan.huang@ebizer.com"
-password = "Hx19871210"
+password = "*****"
 smtp_server = "smtp.exmail.qq.com"
 #to_addr = ['770493410@qq.com','468402@qq.com','1361852914@qq.com','huangxuan27@126.com']
 to_addr = ['770493410@qq.com','huangxuan27@126.com']

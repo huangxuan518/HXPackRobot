@@ -4,6 +4,7 @@
 # 如何使用
 
 1.下载压缩包，解压缩到桌面(注意:必须放到桌面)
+
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/1.png)
 
 2.将文件名改为PackRobot,否则无法使用
