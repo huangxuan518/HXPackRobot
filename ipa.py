@@ -15,7 +15,7 @@ app_name = "" #App名
 project_name = "" #工程名
 scheme = "" #scheme
 project_path = "" # 项目根目录
-targerIPA_parth = "/Users/Love/Desktop/PackRobot/" # 打包后ipa存储目录 请指向自动打包脚本所在目录
+targerIPA_parth = "~/Desktop/PackRobot/" # 打包后ipa存储目录 请指向自动打包脚本所在目录
 
 # fir
 fir_api_token = "" # firm的api token
@@ -105,13 +105,3 @@ def main():
 
 # 执行
 main()
-
-
-
-
-
-
-
-
-
-
