@@ -19,7 +19,7 @@ Python 和 fir-cli
 
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/3.png)
 
-4.进入苹果开发者中心下载我们需要的签名证书，替换掉文件夹中的FuKuaiDi_Inhouse.mobileprovision证书
+4.进入苹果开发者中心下载我们需要的签名证书，替换掉文件夹中的Inhouse.mobileprovision证书
 
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/10.png)
 
