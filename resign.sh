@@ -1,9 +1,9 @@
 #!/bin/sh
 
 #mobileprovision名字
-mobileprovision="FuKuaiDi_Inhouse"
+mobileprovision="Inhouse"
 #证书名称
-signingcertificate="iPhone Distribution: YISS Information Technology Co. Ltd."
+signingcertificate="iPhone Distribution: XXXXX XXXXX XX"
 #plist名字
 plist="Entitlements"
 
