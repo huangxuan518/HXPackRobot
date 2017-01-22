@@ -14,8 +14,8 @@ import smtplib
 app_name = “app" #App名
 project_name = "project" #工程名
 scheme = "scheme" #scheme
-project_path = "~/Desktop/iOS-Project" # 项目根目录
-targerIPA_parth = "~/Desktop/PackRobot/" # 打包后ipa存储目录 请指向PackRobot所在目录
+project_path = "/Users/Love/Desktop/iOS-Project" # 项目根目录
+targerIPA_parth = "/Users/Love/Desktop/PackRobot/" # 打包后ipa存储目录 请指向PackRobot所在目录
 
 # fir
 fir_api_token = "1d93d24eee630b269e46a7c98df5655c" # firm的api token
