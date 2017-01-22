@@ -52,6 +52,10 @@ Python 和 fir-cli
 
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/9.png)
 
+# 注意事项
+
+打包之前请保证文件夹中没有ipa文件
+
 # 扩展
 
 Python下载：https://www.python.org/downloads/
