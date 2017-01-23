@@ -11,26 +11,26 @@ import smtplib
 
 #需要配置分割线 ===================================================================
 # 项目配置
-project_name = "FuKuaiDi" #工程名
-scheme = "FuKuaiDi" #scheme
+project_name = "" #工程名
+scheme = "" #scheme
 project_type = "-workspace" #工程类型 pod工程 -workspace 普通工程 -project
 configuration = "Release" #编译模式 Debug,Release
-project_path = "/Users/Love/Desktop/iOS-FuKuaiDi" # 项目根目录
+project_path = "" # 项目根目录
 pack_robot_parth = "/Users/Love/Desktop/PackRobot/" # 打包后ipa存储目录 请指向自动打包脚本所在目录
-mobileprovision_uuid = "ba0ecd3d-b350-4a71-8af1-318ae1f767aa" #mobileprovision uuid
-signing_certificate = "iPhone Distribution: YISS Information Technology Co. Ltd." #证书名称
+mobileprovision_uuid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" #mobileprovision uuid
+signing_certificate = "iPhone Distribution: xxxx xxxx xxxx" #证书名称
 
 # fir
-fir_api_token = "1d93d24eee630b269e46a7c98df5655c" # firm的api token
-download_address = "https://fir.im/fukuaidient" #firm 下载地址
+fir_api_token = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" # firm的api token
+download_address = "https://fir.im/xxxxxxxxx" #firm 下载地址
 
 #邮件配置
-app_name = "福快递" #App名
-from_name = "黄轩"
-from_addr = "xuan.huang@ebizer.com"
-password = "Hx19871210"
+app_name = "" #App名
+from_name = ""
+from_addr = ""
+password = ""
 smtp_server = "smtp.exmail.qq.com"
-to_addr = ['770493410@qq.com','huangxuan27@126.com']
+to_addr = ['xx@qq.com','xx@126.com']
 
 #需要配置分割线 ===================================================================
 

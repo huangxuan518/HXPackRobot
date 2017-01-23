@@ -22,7 +22,12 @@ Python 和 fir-cli
 4.打开pack.py文件，根据自己的实际情况更改红框部分
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/6.png)
 
-7.打开exportOptionsPlist.plist文件，更改红框部分，红框部分即为用户证书ID+identifier
+7.打开exportOptionsPlist.plist文件更改,teamId见下文如何获取用户ID
+key:compileBitcode、embedOnDemandResourcesAssetPacksInBundle、iCloudContainerEnvironment、manifest、onDemandResourcesAssetPacksBaseURL、thinning这几个key用于非App Store导出的；uploadBitcode、uploadSymbols用于App Store导出；method、teamID共用。
+method的可选值为:
+app-store, package, ad-hoc, enterprise, development, and developer-id
+AppStore：method＝app-store，uploadBitcode＝YES，uploadSymbols＝YES
+Other：method＝ad-hoc，compileBitcode＝NO
 
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/5.png)
 
