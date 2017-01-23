@@ -19,30 +19,30 @@ Python 和 fir-cli
 
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/3.png)
 
-4.进入苹果开发者中心下载我们需要的签名证书，替换掉文件夹中的Inhouse.mobileprovision证书
-
-![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/10.png)
-
-5.打开pack.py文件，根据自己的实际情况更改红框部分
+4.打开pack.py文件，根据自己的实际情况更改红框部分
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/6.png)
 
-6.打开resign.sh文件，更改红框部分
-
-![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/4.png)
-
-7.打开Entitlements.plist文件，更改红框部分，红框部分即为用户证书ID+identifier
+7.打开exportOptionsPlist.plist文件，更改红框部分，红框部分即为用户证书ID+identifier
 
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/5.png)
 
-8.运行PackRobot.app
+8.运行PackRobot.app会打开终端运行指令，archive成功会在PackRobot目录下看到bulid目录
 
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/13.png)
 
-9.生成签名好的ipa包
+9.ipa包生成成功会根据工程名+时间生成一个ipa包文件夹，并删除build目录
+
+![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/4.png)
+
+10.进入可以看到我们的ipa包
+
+![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/7.png)
+
+11.上传fir
 
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/14.png)
 
-10.并上传fir
+12.上传成功
 
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/15.png)
 
@@ -74,9 +74,28 @@ Python 和 fir-cli
 
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/9.png)
 
-# 注意事项
+# .mobileprovision的UUID如何获取
 
-打包之前请保证文件夹中没有ipa文件
+1.Xcode - Window - Organizer 进入 Archives目录，然后选择之前手动打好的包
+
+![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/19.png)
+
+2.选择Export导出
+
+![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/20.png)
+
+3.选择第三个Inhouse包
+
+![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/21.png)
+
+4.一直下一步，到最后可以看到图示
+
+![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/22.png)
+
+5.点击箭头进入，可以看到.mobileprovision，名字前面即为UUID
+
+![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/23.png)
+
 
 # 扩展
 
