@@ -11,59 +11,62 @@ import smtplib
 
 #需要配置分割线 ===================================================================
 # 项目配置
-app_name = “app" #App名
-project_name = "project" #工程名
-scheme = "scheme" #scheme
-project_path = "/Users/Love/Desktop/iOS-Project" # 项目根目录
-targerIPA_parth = "/Users/Love/Desktop/PackRobot/" # 打包后ipa存储目录 请指向PackRobot所在目录
+project_name = "FuKuaiDi" #工程名
+scheme = "FuKuaiDi" #scheme
+project_type = "-workspace" #工程类型 pod工程 -workspace 普通工程 -project
+configuration = "Release" #编译模式 Debug,Release
+project_path = "/Users/Love/Desktop/iOS-FuKuaiDi" # 项目根目录
+pack_robot_parth = "/Users/Love/Desktop/PackRobot/" # 打包后ipa存储目录 请指向自动打包脚本所在目录
+mobileprovision_uuid = "ba0ecd3d-b350-4a71-8af1-318ae1f767aa" #mobileprovision uuid
+signing_certificate = "iPhone Distribution: YISS Information Technology Co. Ltd." #证书名称
 
 # fir
 fir_api_token = "1d93d24eee630b269e46a7c98df5655c" # firm的api token
-download_address = "https://fir.im/project" #firm 下载地址
+download_address = "https://fir.im/fukuaidient" #firm 下载地址
 
 #邮件配置
-from_name = “发件人姓名”
-from_addr = "xxx@qq.com"
-password = “******”
-smtp_server = "smtp.exmail.qq.com" #不同邮箱服务器可百度
-to_addr = [‘xxxx@qq.com’,’xxxx@qq.com']
+app_name = "福快递" #App名
+from_name = "黄轩"
+from_addr = "xuan.huang@ebizer.com"
+password = "Hx19871210"
+smtp_server = "smtp.exmail.qq.com"
+to_addr = ['770493410@qq.com','huangxuan27@126.com']
 
 #需要配置分割线 ===================================================================
 
-# 清理项目 创建build目录
-def clean_project_mkdir_build():
+# 清理项目
+def clean_project():
+    print("** PACKROBOT START **")
     os.system('cd %s;xcodebuild clean' % project_path) # clean 项目
-    os.system('cd %s;mkdir build' % project_path)
 
+# archive项目
 def build_project():
-    print("build release start")
-    os.system ('xcodebuild -list')
-    os.system ('cd %s;xcodebuild -workspace %s.xcworkspace  -scheme %s -configuration release -derivedDataPath build ONLY_ACTIVE_ARCH=NO || exit' % (project_path,project_name,scheme))
+    if project_type == "-workspace" :
+        project_suffix_name = "xcworkspace"
+    else :
+        project_suffix_name = "xcodeproj"
+    os.system ('cd %s;xcodebuild archive %s %s.%s -scheme %s -configuration %s -archivePath %s/build/%s CODE_SIGN_IDENTITY="%s" PROVISIONING_PROFILE="%s" || exit' % (project_path,project_type,project_name,project_suffix_name,scheme,configuration,pack_robot_parth,project_name,signing_certificate,mobileprovision_uuid))
 
-# 打包ipa 并且保存在当前目录
-def build_ipa():
+# 导出ipa包到自动打包程序所在目录
+def exportArchive_ipa():
     global ipa_filename
-    ipa_filename = time.strftime('%Y-%m-%d-%H-%M-%S.ipa',time.localtime(time.time()))
+    ipa_filename = time.strftime('%Y-%m-%d-%H-%M-%S',time.localtime(time.time()))
     ipa_filename = project_name + "_" + ipa_filename;
-    os.system ('xcrun -sdk iphoneos PackageApplication -v %s/build/Build/Products/Release-iphoneos/%s.app -o %s/%s'%(project_path,project_name,targerIPA_parth,ipa_filename))
-
-# 重新签名ipa包
-def resign_code():
-    os.system('cd %s;./resign.sh %s' % (targerIPA_parth,ipa_filename))
+    os.system ('%s/xcodebuild-safe.sh -exportArchive -archivePath %s/build/%s.xcarchive -exportPath %s/%s -exportOptionsPlist %s/exportOptionsPlist.plist ' %(pack_robot_parth,pack_robot_parth,project_name,pack_robot_parth,ipa_filename,pack_robot_parth))
 
 # 删除build目录
 def rm_project_build():
-    os.system('rm -r %s/build' % project_path)
+    os.system('rm -r %s/build' % pack_robot_parth)
 
-#上传
+# 上传fim
 def upload_fir():
-    if os.path.exists("%s/%s" % (targerIPA_parth,ipa_filename)):
-        print('watting...')
+    if os.path.exists("%s/%s" % (pack_robot_parth,ipa_filename)):
         # 直接使用fir 有问题 这里使用了绝对地址 在终端通过 which fir 获得
-        ret = os.system("fir publish '%s/%s' --token='%s'" % (targerIPA_parth,ipa_filename,fir_api_token))
+        ret = os.system("fir publish '%s/%s/%s.ipa' --token='%s'" % (pack_robot_parth,ipa_filename,project_name,fir_api_token))
     else:
         print("没有找到ipa文件")
 
+# 地址格式化
 def _format_addr(s):
     name, addr = parseaddr(s)
     return formataddr((Header(name, 'utf-8').encode(), addr))
@@ -80,20 +83,18 @@ def send_mail():
     server.sendmail(from_addr,to_addr, msg.as_string())
     server.quit()
 
-#输出包信息
+# 输出包信息
 def ipa_info():
-    os.system('fir info %s/%s' % (targerIPA_parth,ipa_filename))
-
+    os.system('fir info %s/%s/%s.ipa' % (pack_robot_parth,ipa_filename,project_name))
+    print("** PACKROBOT SUCCEEDED **")
 
 def main():
     # 清理并创建build目录
-    clean_project_mkdir_build()
-    # 编译coocaPods项目文件并 执行编译目录
+    clean_project()
+    # 编译目录
     build_project()
-    # 打包ipa 并制定到桌面
-    build_ipa()
-    # 重新签名ipa包
-    resign_code()
+    # 导出ipa到机器人所在目录
+    exportArchive_ipa()
     # 删除build目录
     rm_project_build()
     # 上传fir
