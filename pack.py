@@ -41,6 +41,7 @@ def clean_project():
 
 # archive项目
 def build_project():
+    os.system('cd %s;mkdir build' % pack_robot_parth) # 创建build目录
     if project_type == "-workspace" :
         project_suffix_name = "xcworkspace"
     else :
