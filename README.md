@@ -5,6 +5,10 @@
 # 程序运行条件：
 Python 和 fir-cli
 
+# 注意事项
+
+运行之前请将证书字段配置关掉
+
 # 如何使用
 
 1.下载压缩包，解压缩到桌面(注意:必须放到桌面)
@@ -105,7 +109,6 @@ Other：method＝ad-hoc，compileBitcode＝NO
 5.点击箭头进入，可以看到.mobileprovision，名字前面即为UUID
 
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/23.png)
-
 
 # 扩展
 
