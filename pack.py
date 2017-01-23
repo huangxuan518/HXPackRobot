@@ -57,6 +57,7 @@ def exportArchive_ipa():
 
 # 删除build目录
 def rm_project_build():
+    os.system('rm -r %s/build' % project_path)
     os.system('rm -r %s/build' % pack_robot_parth)
 
 # 上传fim
