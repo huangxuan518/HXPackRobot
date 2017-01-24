@@ -40,9 +40,7 @@ Other：method＝ad-hoc，compileBitcode＝NO
 
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/5.png)
 
-8.运行PackRobot.app会打开终端运行指令，archive成功会在PackRobot目录下看到bulid目录
-
-![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/13.png)
+8.运行PackRobot.app会打开终端运行指令，archive成功会在工程目录下看到bulid目录
 
 9.ipa包生成成功会根据工程名+时间生成一个ipa包文件夹，并删除build目录
 
