@@ -41,24 +41,23 @@ def clean_project():
 
 # archive项目
 def build_project():
-    os.system('cd %s;mkdir build' % pack_robot_parth) # 创建build目录
+    os.system('cd %s;mkdir build' % project_path)
     if project_type == "-workspace" :
         project_suffix_name = "xcworkspace"
     else :
         project_suffix_name = "xcodeproj"
-    os.system ('cd %s;xcodebuild archive %s %s.%s -scheme %s -configuration %s -archivePath %s/build/%s CODE_SIGN_IDENTITY="%s" PROVISIONING_PROFILE="%s" || exit' % (project_path,project_type,project_name,project_suffix_name,scheme,configuration,pack_robot_parth,project_name,signing_certificate,mobileprovision_uuid))
+    os.system ('cd %s;xcodebuild archive %s %s.%s -scheme %s -configuration %s -archivePath %s/build/%s CODE_SIGN_IDENTITY="%s" PROVISIONING_PROFILE="%s" || exit' % (project_path,project_type,project_name,project_suffix_name,scheme,configuration,project_path,project_name,signing_certificate,mobileprovision_uuid))
 
 # 导出ipa包到自动打包程序所在目录
 def exportArchive_ipa():
     global ipa_filename
     ipa_filename = time.strftime('%Y-%m-%d-%H-%M-%S',time.localtime(time.time()))
     ipa_filename = project_name + "_" + ipa_filename;
-    os.system ('%s/xcodebuild-safe.sh -exportArchive -archivePath %s/build/%s.xcarchive -exportPath %s/%s -exportOptionsPlist %s/exportOptionsPlist.plist ' %(pack_robot_parth,pack_robot_parth,project_name,pack_robot_parth,ipa_filename,pack_robot_parth))
+    os.system ('%s/xcodebuild-safe.sh -exportArchive -archivePath %s/build/%s.xcarchive -exportPath %s/%s -exportOptionsPlist %s/exportOptionsPlist.plist ' %(pack_robot_parth,project_path,project_name,pack_robot_parth,ipa_filename,pack_robot_parth))
 
 # 删除build目录
 def rm_project_build():
     os.system('rm -r %s/build' % project_path)
-    os.system('rm -r %s/build' % pack_robot_parth)
 
 # 上传fim
 def upload_fir():
