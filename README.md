@@ -7,7 +7,8 @@ Python 和 fir-cli
 
 # 注意事项
 
-运行之前请将证书自动配置关掉,plist里面把勾勾去掉
+运行之前请将证书自动 □ kuangAutomatically manage signing 配置勾勾去掉(选择工程，在配置文件的General-Signing里面)
+
 # 如何使用
 
 1.下载压缩包，解压缩到桌面(注意:必须放到桌面)
