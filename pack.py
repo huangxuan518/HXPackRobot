@@ -11,18 +11,25 @@ import smtplib
 
 #需要配置分割线 ===================================================================
 # 项目配置
-project_name = "" #工程名
-scheme = "" #scheme
-project_type = "-workspace" #工程类型 pod工程 -workspace 普通工程 -project
-configuration = "Release" #编译模式 Debug,Release
-project_path = "" # 项目根目录
-pack_robot_parth = "/Users/Love/Desktop/PackRobot/" # 打包后ipa存储目录 请指向自动打包脚本所在目录
-mobileprovision_uuid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" #mobileprovision uuid
-signing_certificate = "iPhone Distribution: xxxx xxxx xxxx" #证书名称
+project_name    = "xxxxxxxxx"         # 工程名
+scheme          = "xxxxxxxxx"         # scheme
+project_type    = "-workspace"        # 工程类型 pod工程 -workspace 普通工程 -project
+configuration   = "Debug"             # 编译模式 Debug,Release
+project_path    = "xxxxxxxxx"         # 项目根目录
+pack_robot_path = "~/Desktop/PackRobot"                          # 打包后ipa存储目录 请指向自动打包脚本所在目录
+mobileprovision_uuid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"    # mobileprovision uuid
+signing_certificate = "iPhone Distribution: xxxx xxxx xxxx"      # 证书名称
 
-# fir
+# fir 如果不使用,请不要修改此处.
 fir_api_token = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" # firm的api token
-download_address = "https://fir.im/xxxxxxxxx" #firm 下载地址
+download_address = "https://fir.im/xxxxxxxxx"  #firm 下载地址
+
+# pgyer
+pgyer_uKey         = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+pgyer_apiKey       = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+pgyer_appQRCodeURL = "http://www.pgyer.com/xxxxxxxxx"    # 下载地址
+pgyer_installType  = 2                                   # 1：公开，2：密码安装，3：邀请安装。
+pgyer_password     = "12345"
 
 #邮件配置
 app_name = "" #App名
@@ -53,17 +60,28 @@ def exportArchive_ipa():
     global ipa_filename
     ipa_filename = time.strftime('%Y-%m-%d-%H-%M-%S',time.localtime(time.time()))
     ipa_filename = project_name + "_" + ipa_filename;
-    os.system ('%s/xcodebuild-safe.sh -exportArchive -archivePath %s/build/%s.xcarchive -exportPath %s/%s -exportOptionsPlist %s/exportOptionsPlist.plist ' %(pack_robot_parth,project_path,project_name,pack_robot_parth,ipa_filename,pack_robot_parth))
+    os.system ('%s/xcodebuild-safe.sh -exportArchive -archivePath %s/build/%s.xcarchive -exportPath %s/%s -exportOptionsPlist %s/exportOptionsPlist.plist ' %(pack_robot_path,project_path,project_name,pack_robot_path,ipa_filename,pack_robot_path))
 
 # 删除build目录
 def rm_project_build():
     os.system('rm -r %s/build' % project_path)
 
-# 上传fim
-def upload_fir():
-    if os.path.exists("%s/%s" % (pack_robot_parth,ipa_filename)):
-        # 直接使用fir 有问题 这里使用了绝对地址 在终端通过 which fir 获得
-        ret = os.system("fir publish '%s/%s/%s.ipa' --token='%s'" % (pack_robot_parth,ipa_filename,project_name,fir_api_token))
+# 上传
+def upload_app():
+    
+    local_path_filename = os.path.expanduser(pack_robot_path)  # 相对路径转换绝对路径
+
+    if os.path.exists("%s/%s" % (local_path_filename,ipa_filename)):
+        
+        if (fir_api_token == "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"):
+            
+            filePath = "%s/%s/%s.ipa" % (local_path_filename,ipa_filename,project_name)
+            ret = os.system('curl -F "file=@%s" -F "uKey=%s" -F "_api_key=%s" -F "installType=%s" -F "password=%s" http://www.pgyer.com/apiv1/app/upload' % (filePath, pgyer_uKey, pgyer_apiKey, pgyer_installType, pgyer_password))
+
+        else:
+            # 直接使用fir 有问题 这里使用了绝对地址 在终端通过 which fir 获得
+            ret = os.system("fir publish '%s/%s/%s.ipa' --token='%s'" % (pack_robot_path,ipa_filename,project_name,fir_api_token))
+
     else:
         print("没有找到ipa文件")
 
@@ -86,7 +104,11 @@ def send_mail():
 
 # 输出包信息
 def ipa_info():
-    os.system('fir info %s/%s/%s.ipa' % (pack_robot_parth,ipa_filename,project_name))
+    print '\n'
+    local_path_filename = os.path.expanduser(pack_robot_path)  # 相对路径转换绝对路径
+    print "ipa file location information --- %s/%s/%s.ipa" % (local_path_filename,ipa_filename,project_name)
+    print '\n'
+
     print("** PACKROBOT SUCCEEDED **")
 
 def main():
@@ -98,8 +120,8 @@ def main():
     exportArchive_ipa()
     # 删除build目录
     rm_project_build()
-    # 上传fir
-    upload_fir()
+    # 上传
+    upload_app()
     # 发邮件
     send_mail()
     #输出包信息
