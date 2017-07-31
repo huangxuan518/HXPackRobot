@@ -92,7 +92,10 @@ def _format_addr(s):
 
 # 发邮件
 def send_mail():
-    msg = MIMEText(app_name + "iOS测试项目已经打包完毕，请前往 " + download_address + " 下载测试！如有问题，请联系iOS相关人员或者直接将问题提至Teambition，我们会及时解决，谢谢", 'plain', 'utf-8')
+    if (fir_api_token == "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"):
+        msg = MIMEText(app_name + " iOS客户端已经打包完毕，请前往 " + pgyer_appQRCodeURL + " 下载测试！如有问题，请联系iOS相关人员或者直接将问题提至Teambition，我们会及时解决，谢谢!", 'plain', 'utf-8')
+    else:
+        msg = MIMEText(app_name + " iOS客户端已经打包完毕，请前往 " + download_address + " 下载测试！如有问题，请联系iOS相关人员或者直接将问题提至Teambition，我们会及时解决，谢谢!", 'plain', 'utf-8')
     msg['From'] = _format_addr('%s''<%s>' % (from_name,from_addr))
     msg['To'] = ",".join(_format_addr('%s' % to_addr))
     msg['Subject'] = Header(app_name + "iOS客户端自动打包程序 打包于:" + time.strftime('%Y年%m月%d日%H:%M:%S',time.localtime(time.time())), 'utf-8').encode()
