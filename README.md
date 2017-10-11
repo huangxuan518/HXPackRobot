@@ -7,7 +7,8 @@ Python 和 fir-cli
 
 # 注意事项
 
-运行之前请将证书自动 □ kuangAutomatically manage signing 配置勾勾去掉(选择工程，在配置文件的General-Signing里面)
+1. 运行之前请将证书自动 □ kuangAutomatically manage signing 配置勾勾去掉(选择工程，在配置文件的General-Signing里面)
+2. 使用 Xcode 9.0 以上编译器 exportOptionsPlist.plist 中需要新增 provisioningProfiles 字段(具体配置会在后面说明)
 
 # 如何使用
 
@@ -28,15 +29,29 @@ Python 和 fir-cli
 
 7.打开exportOptionsPlist.plist文件更改,teamId见下文如何获取用户ID
 
-key:compileBitcode、embedOnDemandResourcesAssetPacksInBundle、iCloudContainerEnvironment、manifest、onDemandResourcesAssetPacksBaseURL、thinning这几个key用于非App Store导出的；uploadBitcode、uploadSymbols用于App Store导出；method、teamID共用。
+## exportOptionsPlist中键值填写说明:
+* 必须填写的公共设置:
+    * method
+        * 可选参数:app-store, package, ad-hoc, enterprise, development, developer-id
+    * teamID
 
-method的可选值为:
+* 这几个key用于非App Store导出的:
+    * compileBitcode
+    * embedOnDemandResourcesAssetPacksInBundle
+    * iCloudContainerEnvironment
+    * manifest
+    * onDemandResourcesAssetPacksBaseURL
+    * thinning
 
-app-store, package, ad-hoc, enterprise, development, and developer-id
+* 用于App Store导出:
+    * uploadBitcode
+    * uploadSymbols
 
-AppStore：method＝app-store，uploadBitcode＝YES，uploadSymbols＝YES
-
-Other：method＝ad-hoc，compileBitcode＝NO
+## 通用配置:
+* 用于App Store导出:
+    * method＝app-store，uploadBitcode＝YES，uploadSymbols＝YES
+* Other:
+    * method＝ad-hoc，compileBitcode＝NO
 
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/5.png)
 
