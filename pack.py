@@ -17,12 +17,12 @@ project_type    = "-workspace"        # 工程类型 pod工程 -workspace 普通
 configuration   = "Debug"             # 编译模式 Debug,Release
 project_path    = "xxxxxxxxx"         # 项目根目录
 pack_robot_path = "~/Desktop/PackRobot"                          # 打包后ipa存储目录 请指向自动打包脚本所在目录
-mobileprovision_uuid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"    # mobileprovision uuid
+mobileprovision_uuid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"    # mobileprovision uuid,不能使用 xcode 自动生成的文件
 signing_certificate = "iPhone Distribution: xxxx xxxx xxxx"      # 证书名称
 
 # fir 如果不使用,请不要修改此处.
 fir_api_token = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" # firm的api token
-download_address = "https://fir.im/xxxxxxxxx"  #firm 下载地址
+download_address = "https://fir.im/xxxxxxxxx"  # firm 下载地址
 
 # pgyer
 pgyer_uKey         = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
