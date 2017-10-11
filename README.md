@@ -34,8 +34,10 @@ Python 和 fir-cli
     * method
         * 可选参数:app-store, package, ad-hoc, enterprise, development, developer-id
     * teamID
-
-* 这几个key用于非App Store导出的:
+    * provisioningProfiles( Xcode 9.0 需要, 类型: Dictionary )
+        * 包含一对子键 bundle id : 证书名
+    
+* 用于非App Store导出的:
     * compileBitcode
     * embedOnDemandResourcesAssetPacksInBundle
     * iCloudContainerEnvironment
@@ -50,6 +52,7 @@ Python 和 fir-cli
 ## 通用配置:
 * 用于App Store导出:
     * method＝app-store，uploadBitcode＝YES，uploadSymbols＝YES
+    
 * Other:
     * method＝ad-hoc，compileBitcode＝NO
 
