@@ -5,6 +5,7 @@
 # 程序支持上传平台：
 fir.im / pgyer.com
 
+<<<<<<< HEAD
 # 程序运行条件：
 <<<<<<< HEAD
 fir.im / pgyer.com(蒲公英)
@@ -12,6 +13,10 @@ fir.im / pgyer.com(蒲公英)
 # 程序运行条件：
 Python 和 fir-cli(仅上传fir.im时需要)
 =======
+Python 和 fir-cli(上传fir.im时需要)
+>>>>>>> master
+=======
+# 程序运行条件：
 Python 和 fir-cli(上传fir.im时需要)
 >>>>>>> master
 
