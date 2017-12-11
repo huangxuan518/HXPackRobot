@@ -3,14 +3,16 @@
 作为一名开发人员，我们不仅需要面对无穷无尽的bug，还得无穷无尽的打测试包，有的时候甚至一天打N个包，面对如此频繁的苦力工作，我们自然会想是否可以让机器人来帮我们实现这一重复的过程，其实这个完全可以实现，而且网上的实现方法各式各样，但无非都是运用系统打包指令打包，然后通过Fir.im的fir-cli上传指令上传，如果你是打包到其他平台，其过程也大同小异。网上实现比较多的是Python和shell实现。但是很多使用起来都有一些问题。下面就把自己经过多天实践的Python和shell实现的一键打包程序分享给大家，只需简单配置，便可以轻松打包，打包的时候，来上一杯茶，和别人聊聊天，何不惬意！
 
 # 程序支持上传平台：
-fir.im / pgyer.com
+fir.im / pgyer.com(蒲公英)
+
 
 # 程序运行条件：
 Python 和 fir-cli(上传fir.im时需要)
 
 # 注意事项
 
-运行之前请将证书自动 □ kuangAutomatically manage signing 配置勾勾去掉(选择工程，在配置文件的General-Signing里面)
+1. 运行之前请将证书自动 □ kuangAutomatically manage signing 配置勾勾去掉(选择工程，在配置文件的General-Signing里面)
+2. 使用 Xcode 9.0 以上编译器 exportOptionsPlist.plist 中需要新增 provisioningProfiles 字段(具体配置会在后面说明)
 
 # 如何使用
 
@@ -31,15 +33,32 @@ Python 和 fir-cli(上传fir.im时需要)
 
 7.打开exportOptionsPlist.plist文件更改,teamId见下文如何获取用户ID
 
-key:compileBitcode、embedOnDemandResourcesAssetPacksInBundle、iCloudContainerEnvironment、manifest、onDemandResourcesAssetPacksBaseURL、thinning这几个key用于非App Store导出的；uploadBitcode、uploadSymbols用于App Store导出；method、teamID共用。
+## exportOptionsPlist中键值填写说明:
+* 必须填写的公共设置:
+    * method
+        * 可选参数:app-store, package, ad-hoc, enterprise, development, developer-id
+    * teamID
+    * provisioningProfiles( Xcode 9.0 需要, 类型: Dictionary )
+        * 包含一对子键  bundle id : 证书名
+    
+* 用于非App Store导出的:
+    * compileBitcode
+    * embedOnDemandResourcesAssetPacksInBundle
+    * iCloudContainerEnvironment
+    * manifest
+    * onDemandResourcesAssetPacksBaseURL
+    * thinning
 
-method的可选值为:
+* 用于App Store导出:
+    * uploadBitcode
+    * uploadSymbols
 
-app-store, package, ad-hoc, enterprise, development, and developer-id
-
-AppStore：method＝app-store，uploadBitcode＝YES，uploadSymbols＝YES
-
-Other：method＝ad-hoc，compileBitcode＝NO
+## 通用配置:
+* 用于App Store导出:
+    * method＝app-store，uploadBitcode＝YES，uploadSymbols＝YES
+    
+* Other:
+    * method＝ad-hoc，compileBitcode＝NO
 
 ![image](https://github.com/huangxuan518/HXPackRobot/blob/master/%E8%AF%B4%E6%98%8E%E5%9B%BE/5.png)
 

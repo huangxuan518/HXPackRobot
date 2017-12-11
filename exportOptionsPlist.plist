@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>provisioningProfiles</key>
+	<dict>
+		<key>bundle id</key>
+		<string>证书名</string>
+	</dict>
 	<key>teamID</key>
 	<string>XXXXXXXXXX</string>
 	<key>method</key>
