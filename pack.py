@@ -3,13 +3,17 @@ import os
 import sys
 import time
 import hashlib
+import smtplib
+
 from email import encoders
 from email.header import Header
 from email.mime.text import MIMEText
 from email.utils import parseaddr, formataddr
-import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
 
-#需要配置分割线 ===================================================================
+# 需要配置分割线 ===================================================================
+
 # 项目配置
 project_name    = "xxxxxxxxx"         # 工程名
 scheme          = "xxxxxxxxx"         # scheme
@@ -17,29 +21,31 @@ project_type    = "-workspace"        # 工程类型 pod工程 -workspace 普通
 configuration   = "Debug"             # 编译模式 Debug,Release
 project_path    = "xxxxxxxxx"         # 项目根目录
 pack_robot_path = "~/Desktop/PackRobot"                          # 打包后ipa存储目录 请指向自动打包脚本所在目录
-mobileprovision_uuid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"    # mobileprovision uuid,不能使用 xcode 自动生成的文件
+ERCodeImage_path = "~/Desktop/PackRobot/ERCode.png"              # 下载地址的二维码路径
+mobileprovision_uuid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"    # mobileprovision uuid,不能使用 xcode 自动生成的文件,需要为手动管理的配置文件
 signing_certificate = "iPhone Distribution: xxxx xxxx xxxx"      # 证书名称
 
 # fir 如果不使用,请不要修改此处.
-fir_api_token = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" # firm的api token
-download_address = "https://fir.im/xxxxxxxxx"  # firm 下载地址
+fir_api_token = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"  # firm的api token
+download_address = "https://fir.im/xxxxxxxxx"   # firm 下载地址
 
 # pgyer
 pgyer_uKey         = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 pgyer_apiKey       = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-pgyer_appQRCodeURL = "http://www.pgyer.com/xxxxxxxxx"    # 下载地址
-pgyer_installType  = 2                                   # 1：公开，2：密码安装，3：邀请安装。
+pgyer_appQRCodeURL = "http://www.pgyer.com/xxxxxxxxx"   # 下载地址
+pgyer_installType  = 2                                  # 1：公开，2：密码安装，3：邀请安装。
 pgyer_password     = "12345"
+pgyer_updateDescription = "test版本"                     # 更新描述
 
-#邮件配置
-app_name = "" #App名
+# 邮件配置
+app_name = ""   #App名
 from_name = ""
 from_addr = ""
 password = ""
 smtp_server = "smtp.exmail.qq.com"
 to_addr = ['xx@qq.com','xx@126.com']
 
-#需要配置分割线 ===================================================================
+# 需要配置分割线 ===================================================================
 
 # 清理项目
 def clean_project():
@@ -68,20 +74,15 @@ def rm_project_build():
 
 # 上传
 def upload_app():
-    
     local_path_filename = os.path.expanduser(pack_robot_path)  # 相对路径转换绝对路径
-
+    
     if os.path.exists("%s/%s" % (local_path_filename,ipa_filename)):
-        
         if (fir_api_token == "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"):
-            
             filePath = "%s/%s/%s.ipa" % (local_path_filename,ipa_filename,project_name)
-            ret = os.system('curl -F "file=@%s" -F "uKey=%s" -F "_api_key=%s" -F "installType=%s" -F "password=%s" http://www.pgyer.com/apiv1/app/upload' % (filePath, pgyer_uKey, pgyer_apiKey, pgyer_installType, pgyer_password))
-
+            ret = os.system('curl -F "file=@%s" -F "uKey=%s" -F "_api_key=%s" -F "installType=%s" -F "password=%s" -F "updateDescription=%s" http://www.pgyer.com/apiv1/app/upload' % (filePath, pgyer_uKey, pgyer_apiKey, pgyer_installType, pgyer_password, pgyer_updateDescription))
         else:
             # 直接使用fir 有问题 这里使用了绝对地址 在终端通过 which fir 获得
             ret = os.system("fir publish '%s/%s/%s.ipa' --token='%s'" % (pack_robot_path,ipa_filename,project_name,fir_api_token))
-
     else:
         print("没有找到ipa文件")
 
@@ -92,17 +93,33 @@ def _format_addr(s):
 
 # 发邮件
 def send_mail():
+    msgRoot = MIMEMultipart('related')
+    msgRoot['From'] = _format_addr('%s''<%s>' % (from_name,from_addr))
+    msgRoot['To'] = ",".join(_format_addr('%s' % to_addr))
+    msgRoot['Subject'] = Header(app_name + " iOS 客户端版本构建完成, 构建时间:" + time.strftime('%Y年%m月%d日%H:%M:%S',time.localtime(time.time())), 'utf-8').encode()
     if (fir_api_token == "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"):
-        msg = MIMEText(app_name + " iOS客户端已经打包完毕，请前往 " + pgyer_appQRCodeURL + " 下载测试！如有问题，请联系iOS相关人员或者直接将问题提至Teambition，我们会及时解决，谢谢!", 'plain', 'utf-8')
+        msgText = MIMEText(app_name + " iOS客户端已经打包完毕，请扫描附件中的二维码或前往 " + pgyer_appQRCodeURL + " 下载测试！如有问题，请联系iOS相关人员或者直接将问题提至禅道，我们会及时解决，谢谢!", 'plain', 'utf-8')
     else:
-        msg = MIMEText(app_name + " iOS客户端已经打包完毕，请前往 " + download_address + " 下载测试！如有问题，请联系iOS相关人员或者直接将问题提至Teambition，我们会及时解决，谢谢!", 'plain', 'utf-8')
-    msg['From'] = _format_addr('%s''<%s>' % (from_name,from_addr))
-    msg['To'] = ",".join(_format_addr('%s' % to_addr))
-    msg['Subject'] = Header(app_name + "iOS客户端自动打包程序 打包于:" + time.strftime('%Y年%m月%d日%H:%M:%S',time.localtime(time.time())), 'utf-8').encode()
+        msgText = MIMEText(app_name + " iOS客户端已经打包完毕，请扫描附件中的二维码或前往 " + download_address + " 下载测试！如有问题，请联系iOS相关人员或者直接将问题提至禅道，我们会及时解决，谢谢!", 'plain', 'utf-8')
+    msgRoot.attach(msgText)
+
+    # 添加图片类型附件
+    local_path_filename = os.path.expanduser(ERCodeImage_path)
+    if(os.path.exists(local_path_filename)) :
+        fpath,fname = os.path.split(local_path_filename)
+        with open(local_path_filename, 'rb') as imageFile:
+            mime = MIMEBase('image', 'png', filename = fname)
+            mime.add_header('Content-Disposition', 'attachment', filename=fname)
+            mime.add_header('Content-ID', '<0>')
+            mime.add_header('X-Attachment-Id', '0')
+            mime.set_payload(imageFile.read())
+            encoders.encode_base64(mime)
+            msgRoot.attach(mime)
+
     server = smtplib.SMTP(smtp_server, 25)
     server.set_debuglevel(1)
     server.login(from_addr, password)
-    server.sendmail(from_addr,to_addr, msg.as_string())
+    server.sendmail(from_addr,to_addr, msgRoot.as_string())
     server.quit()
 
 # 输出包信息
@@ -111,7 +128,7 @@ def ipa_info():
     local_path_filename = os.path.expanduser(pack_robot_path)  # 相对路径转换绝对路径
     print "ipa file location information --- %s/%s/%s.ipa" % (local_path_filename,ipa_filename,project_name)
     print '\n'
-
+    
     print("** PACKROBOT SUCCEEDED **")
 
 def main():
