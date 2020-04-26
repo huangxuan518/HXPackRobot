@@ -27,7 +27,7 @@ signing_certificate = "iPhone Distribution: xxxx xxxx xxxx"      # 证书名称
 
 # fir 如果不使用,请不要修改此处.
 fir_api_token = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"  # firm的api token
-download_address = "https://fir.im/xxxxxxxxx"   # firm 下载地址
+download_address = "https://www.betaqr.com/xxxxxxxxx"   # firm 下载地址
 
 # pgyer
 pgyer_uKey         = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
